@@ -47,14 +47,15 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
+//import java.nio.file.Files;
+//import java.nio.file.Path;
 
 import org.mozilla.universalchardet.prober.CharsetProber;
 import org.mozilla.universalchardet.prober.EscCharsetProber;
 import org.mozilla.universalchardet.prober.Latin1Prober;
 import org.mozilla.universalchardet.prober.MBCSGroupProber;
 import org.mozilla.universalchardet.prober.SBCSGroupProber;
+import java.io.FileInputStream;
 
 public class UniversalDetector
 {
@@ -338,7 +339,8 @@ public class UniversalDetector
      * @throws IOException if some IO error occurs
      */
     public static String detectCharset(File file) throws IOException {
-        return detectCharset(file.toPath());
+        //return detectCharset(file.toPath());
+		return detectCharset(new BufferedInputStream(new FileInputStream(file)));
     }
 
     /**
@@ -348,11 +350,11 @@ public class UniversalDetector
      * @return The charset of the file, null if cannot be determined
      * @throws IOException if some IO error occurs
      */
-    public static String detectCharset(Path path) throws IOException {
-        try (InputStream fis = new BufferedInputStream(Files.newInputStream(path))) {
-            return detectCharset(fis);
-        }
-    }
+//    public static String detectCharset(Path path) throws IOException {
+//        try (InputStream fis = new BufferedInputStream(Files.newInputStream(path))) {
+//            return detectCharset(fis);
+//        }
+//    }
 
     /**
      * Gets the charset of content from InputStream.

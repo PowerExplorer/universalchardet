@@ -38,10 +38,11 @@
 package org.mozilla.universalchardet.example;
 
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+//import java.nio.file.Files;
+//import java.nio.file.Paths;
 
 import org.mozilla.universalchardet.UniversalDetector;
+import java.io.*;
 
 public class TestDetector {
 	public static void main(String[] args) throws java.io.IOException {
@@ -52,7 +53,7 @@ public class TestDetector {
 
 		byte[] buf = new byte[4096];
 		String fileName = args[0];
-		try (InputStream fis = Files.newInputStream(Paths.get(fileName))) {
+		try (InputStream fis = new FileInputStream(new File(fileName))) {
 
 			// (1)
 			UniversalDetector detector = new UniversalDetector();

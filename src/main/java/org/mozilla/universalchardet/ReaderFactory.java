@@ -35,9 +35,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
+//import java.nio.file.Files;
+//import java.nio.file.Path;
 import java.util.Objects;
+import java.io.FileInputStream;
 
 /**
  * Create a reader from a file with correct encoding
@@ -62,10 +63,12 @@ public final class ReaderFactory {
 			cs = Charset.forName(detectedEncoding);
 		}
 		if (!cs.toString().contains("UTF")) {
-			return Files.newBufferedReader(file.toPath(), cs);			
+			//return Files.newBufferedReader(file.toPath(), cs);
+			return new BufferedReader(new InputStreamReader(new FileInputStream(file), cs));
 		}
-		Path path = file.toPath();
-		return new BufferedReader(new InputStreamReader(new UnicodeBOMInputStream(new BufferedInputStream(Files.newInputStream(path))), cs));
+		//Path path = file.toPath();
+		//return new BufferedReader(new InputStreamReader(new UnicodeBOMInputStream(new BufferedInputStream(Files.newInputStream(path))), cs));
+		return new BufferedReader(new InputStreamReader(new UnicodeBOMInputStream(new BufferedInputStream(new FileInputStream(file))), cs));
 	}
 	/**
 	 * Create a reader from a file with correct encoding. If charset cannot be determined, 
