@@ -1,0 +1,11 @@
+Original mozilla repo:
+
+http://lxr.mozilla.org/seamonkey/source/extensions/universalchardet/
+
+¿new mozilla repo?
+http://hg.mozilla.org/mozilla-central/file/tip/extensions/universalchardet/
+
+
+Multiple charsets removed 
+cause: Remove encoding detectors that are no longer offered in the UI. r=emk.
+http://hg.mozilla.org/mozilla-central/rev/2f0c68d4d7ca
